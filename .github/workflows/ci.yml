@@ -14,6 +14,9 @@ jobs:
       - name: Hello
         run: echo "👋 Hello, World from GitHub Actions!"
 
+      - name: My Name
+        run: echo "👋 My name is Raemond!"
+
 
       # - name: Deploy to GCP VM
       #   run: |
