@@ -1,0 +1,11 @@
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # <-- This gets your repo's files
+
+      # - name: Deploy to GCP VM
+      #   run: |
+      #   rsync  -auv  --exclude '.git*' ./ user@192.168.100.1:/var/www/html/staging_development/raemond/github-action
