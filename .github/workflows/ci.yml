@@ -1,8 +1,11 @@
 
 name: my-github-action  
 
-on: push
-
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 jobs:
   compile:
     runs-on: ubuntu-latest
