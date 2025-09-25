@@ -63,23 +63,34 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up JDK 17
+      id: setup-java
       uses: actions/setup-java@v4
       with:
           distribution: 'temurin'
           java-version: 17
 
-    - name: Analyze with SonarQube
-      uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
-      env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on SonarQube, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # add the URL of your instance to the secrets of this repo with the name SONAR_HOST_URL (Settings > Secrets > Actions > add new repository secret)
+    - name: Verify Java version
+      run: java -version
+
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@v2
       with:
-          # Additional arguments for the sonarcloud scanner
-          args:
-            # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
-            # mandatory
-            -Dsonar.projectKey=${{ secrets.PROJECT_KEY }}
+          projectBaseDir: .
+      env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+    # - name: Analyze with SonarQube
+    #   uses: SonarSource/sonarqube-scan-action@7295e71c9583053f5bf40e9d4068a0c974603ec8
+    #   env:
+    #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+    #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on SonarQube, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+    #       SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}   # add the URL of your instance to the secrets of this repo with the name SONAR_HOST_URL (Settings > Secrets > Actions > add new repository secret)
+    #   with:
+    #       # Additional arguments for the sonarcloud scanner
+    #       args:
+    #         # Unique key of your project. You can find it in SonarQube > [my project] > Project Information (top-right menu)
+    #         # mandatory
+    #         -Dsonar.projectKey=${{ secrets.PROJECT_KEY }}
          
 
 
