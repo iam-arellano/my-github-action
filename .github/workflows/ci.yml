@@ -71,7 +71,7 @@ jobs:
 
   Owasp-dependency-check:
     runs-on: ubuntu-latest
-    needs: Trivy-check
+    needs:  SonarCloud-check
     
     steps:
       - name: Checkout code
@@ -85,7 +85,8 @@ jobs:
 
       - name: Download OWASP Dependency-Check CLI
         run: |
-          curl -L -o dependency-check.zip https://github.com/jeremylong/DependencyCheck/releases/latest/download/dependency-check-8.5.0-release.zip
+         
+         curl -L -o dependency-check-12.1.6-release.zip https://github.com/dependency-check/DependencyCheck/releases/download/v12.1.6/dependency-check-12.1.6-release.zip
           unzip dependency-check.zip -d dependency-check
           chmod +x dependency-check/bin/dependency-check.sh
 
