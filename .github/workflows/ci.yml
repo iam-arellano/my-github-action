@@ -84,10 +84,11 @@ jobs:
           java-version: '11'
 
       - name: Download OWASP Dependency-Check CLI
-        run: |      
+        run: |
           curl -L -o dependency-check-12.1.6-release.zip https://github.com/dependency-check/DependencyCheck/releases/download/v12.1.6/dependency-check-12.1.6-release.zip
           unzip dependency-check-12.1.6-release.zip -d dependency-check
-          chmod +x dependency-check/bin/dependency-check.sh
+          chmod +x dependency-check/dependency-check/bin/dependency-check.sh
+
 
 
       - name: Run OWASP Dependency Check
