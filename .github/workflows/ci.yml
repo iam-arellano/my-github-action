@@ -85,15 +85,17 @@ jobs:
 
       - name: Download OWASP Dependency-Check CLI
         run: |
-          curl -L -o dependency-check-12.1.6-release.zip https://github.com/dependency-check/DependencyCheck/releases/download/v12.1.6/dependency-check-12.1.6-release.zip
-          unzip dependency-check-12.1.6-release.zip -d dependency-check
-          chmod +x dependency-check/dependency-check/bin/dependency-check.sh
+            curl -L -o dependency-check-12.1.6-release.zip https://github.com/dependency-check/DependencyCheck/releases/download/v12.1.6/dependency-check-12.1.6-release.zip
+            unzip dependency-check-12.1.6-release.zip
+            chmod +x dependency-check/bin/dependency-check.sh
 
 
 
-      - name: Run OWASP Dependency Check
+
+      - name: Run Dependency-Check
         run: |
           ./dependency-check/bin/dependency-check.sh --project "MyProject" --scan . --format ALL --failOnCVSS 7
+
 
       - name: Upload Dependency-Check Report
         uses: actions/upload-artifact@v4
