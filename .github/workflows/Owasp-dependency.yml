@@ -4,9 +4,9 @@ on:
   workflow_dispatch:  # Allows manual run from GitHub Actions tab
 
 
-Owasp-dependency-check:
+jobs:
+  Owasp-dependency-check:
     runs-on: ubuntu-latest
-    needs:  SonarCloud-check
     
     steps:
       - name: Checkout code
